@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>keebd - fastest way to stay expressive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,400&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1e90ff",
+                        "background-light": "#fdf0d5",
+                        "background-dark": "#1a1a1a",
+                        "content-light": "#2d231d",
+                        "content-dark": "#fdf0d5",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        body: ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "2rem",
+                        'large': '3rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-transform: lowercase;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translate(0,  0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        .video-container {
+            aspect-ratio: 9/16;
+            background: rgba(0,0,0,0.05);
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        .dark .video-container {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark transition-colors duration-300">
+<nav class="container mx-auto px-6 py-8 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="text-3xl font-extrabold tracking-tighter">keebd</span>
+</div>
+<div>
+<a class="text-sm font-medium hover:text-primary transition-colors opacity-70 hover:opacity-100 cursor-pointer" href="#privacy-policy" onclick="event.preventDefault(); openPrivacyModal()">privacy policy</a>
+</div>
+</nav>
+<main class="container mx-auto px-6 pt-12 pb-24">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-10">
+<div class="relative inline-block">
+<h1 class="text-7xl md:text-8xl font-extrabold leading-[1.1] tracking-tight">
+                        fastest <br/> way to <br/> stay <br/>
+<span class="relative">expressive
+                            <svg class="absolute -bottom-2 left-0 w-full h-4 text-primary opacity-30" fill="none" viewBox="0 0 300 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 10C50 2 250 2 298 10" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</span>
+</h1>
+<div class="absolute -top-10 -right-10 w-20 h-20 bg-primary rounded-full opacity-10 blur-3xl"></div>
+</div>
+<p class="text-2xl opacity-80 max-w-md font-medium leading-relaxed">
+                    tag memes and reactions instantly. never lose that perfect image again.
+                </p>
+<div class="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+<button class="bg-primary hover:bg-opacity-90 text-white px-8 py-4 rounded-full flex items-center gap-4 text-xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/20">
+<svg class="w-7 h-7" fill="currentColor" viewBox="0 0 384 512">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
+</svg>
+                        download for ios
+                    </button>
+</div>
+</div>
+<div class="relative">
+<div class="video-container rounded-[3rem] overflow-hidden shadow-2xl relative z-10 bg-black/5 flex items-center justify-center">
+<video id="video-light" class="absolute inset-0 w-full h-full object-cover dark:hidden" preload="metadata" playsinline>
+<source src="keebd-demo-light.mp4" type="video/mp4"/>
+</video>
+<video id="video-dark" class="absolute inset-0 w-full h-full object-cover hidden dark:block" preload="metadata" playsinline>
+<source src="keebd-demo-dark.mp4" type="video/mp4"/>
+</video>
+<div id="play-overlay" class="absolute inset-0 flex items-center justify-center z-20 cursor-pointer">
+<div class="flex flex-col items-center gap-4">
+<button class="w-24 h-24 bg-primary/20 text-primary rounded-full flex items-center justify-center backdrop-blur-md hover:scale-110 transition-transform">
+<span class="material-icons text-6xl">play_arrow</span>
+</button>
+<span class="font-bold opacity-60">watch app in action</span>
+</div>
+</div>
+</div>
+<div class="absolute -inset-10 bg-primary/10 blur-[100px] rounded-full -z-10"></div>
+</div>
+</div>
+</main>
+<section class="container mx-auto px-6 py-12">
+<div class="flex flex-wrap justify-between items-end border-t-2 border-content-light/5 dark:border-content-dark/5 pt-12">
+<div class="max-w-md">
+<h3 class="text-4xl font-extrabold mb-4 italic">built for the meme era.</h3>
+<p class="opacity-60 text-lg">no more scrolling through thousands of photos to find that one specific reaction face. just tag it and find it in seconds.</p>
+</div>
+<div class="mt-8 lg:mt-0">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-content-light/10 dark:border-content-dark/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer">
+<span class="material-icons">share</span>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-content-light/10 dark:border-content-dark/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer">
+<span class="material-icons">alternate_email</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<button id="theme-toggle" class="fixed bottom-12 right-12 w-14 h-14 bg-white dark:bg-neutral-800 rounded-full shadow-2xl flex items-center justify-center z-50 border-2 border-content-light/5 dark:border-white/10" onclick="toggleTheme()">
+<span class="material-icons text-content-light dark:text-content-dark">dark_mode</span>
+</button>
+
+<div id="privacy-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center">
+<div class="absolute inset-0 bg-black/50" onclick="closePrivacyModal()"></div>
+<div class="relative bg-background-light dark:bg-background-dark rounded-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl p-8 md:p-12 z-10">
+<button onclick="closePrivacyModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-content-light/10 dark:hover:bg-content-dark/10 transition-colors">
+<span class="material-icons">close</span>
+</button>
+<div class="space-y-6">
+<h1 class="text-3xl font-extrabold tracking-tight">privacy policy for keebd</h1>
+<p class="opacity-70"><strong>last updated: february 5, 2026</strong></p>
+
+<h2 class="text-xl font-bold">overview</h2>
+<p class="opacity-80 leading-relaxed">keebd ("the app") is a custom keyboard and meme management app. your privacy is important, so here's the short version: <strong>keebd does not collect, transmit, or share any of your data. everything stays on your device.</strong></p>
+
+<h2 class="text-xl font-bold">data storage</h2>
+<p class="opacity-80 leading-relaxed">all data — including images, gifs, tags, and metadata — is stored locally on your device using an app group shared container. this allows the main app and the keyboard extension to access your meme library. no data is stored on external servers.</p>
+
+<h2 class="text-xl font-bold">data collection</h2>
+<p class="opacity-80 leading-relaxed">keebd does <strong>not</strong> collect any data. specifically:</p>
+<ul class="list-disc list-inside space-y-2 opacity-80">
+<li><strong>no personal information</strong> is collected</li>
+<li><strong>no usage analytics</strong> or tracking of any kind</li>
+<li><strong>no crash reporting</strong> data is sent externally</li>
+<li><strong>no advertising</strong> identifiers or ad networks are used</li>
+<li><strong>no network requests</strong> are made by the app — keebd does not connect to the internet</li>
+<li><strong>no cookies</strong> or similar tracking technologies are used</li>
+</ul>
+
+<h2 class="text-xl font-bold">keyboard extension & full access</h2>
+<p class="opacity-80 leading-relaxed">keebd includes a custom keyboard extension. ios requires you to enable "allow full access" for the keyboard to function properly. this permission is needed <strong>solely</strong> to allow the keyboard to copy images and gifs to your clipboard so you can paste them into other apps.</p>
+<p class="opacity-80 leading-relaxed">even with full access enabled:</p>
+<ul class="list-disc list-inside space-y-2 opacity-80">
+<li>the keyboard does <strong>not</strong> log keystrokes</li>
+<li>the keyboard does <strong>not</strong> transmit any data over the network</li>
+<li>the keyboard does <strong>not</strong> access any data beyond your locally stored meme library</li>
+<li>the keyboard does <strong>not</strong> record or monitor what you type in other apps</li>
+</ul>
+
+<h2 class="text-xl font-bold">third-party services</h2>
+<p class="opacity-80 leading-relaxed">keebd does not use any third-party services, sdks, analytics platforms, or advertising networks.</p>
+
+<h2 class="text-xl font-bold">photos access</h2>
+<p class="opacity-80 leading-relaxed">keebd requests access to your photo library solely to allow you to import images and gifs into your meme collection. selected media is copied into the app's local storage. the app does not modify, delete, or upload your photos.</p>
+
+<h2 class="text-xl font-bold">children's privacy</h2>
+<p class="opacity-80 leading-relaxed">keebd does not collect any data from any user, including children under the age of 13.</p>
+
+<h2 class="text-xl font-bold">data deletion</h2>
+<p class="opacity-80 leading-relaxed">since all data is stored locally on your device, you have full control over it. you can delete individual items within the app or use the "delete all" option to remove your entire meme library. uninstalling the app will also remove all stored data.</p>
+
+<h2 class="text-xl font-bold">changes to this policy</h2>
+<p class="opacity-80 leading-relaxed">if this privacy policy is updated, the changes will be reflected with an updated date at the top of this document. since keebd collects no data, material changes are unlikely.</p>
+
+<h2 class="text-xl font-bold">contact</h2>
+<p class="opacity-80 leading-relaxed">if you have questions about this privacy policy, you can reach out at:</p>
+<p class="opacity-80"><strong>email:</strong> <a href="mailto:quinoa.news0x@icloud.com" class="text-primary hover:underline">quinoa.news0x@icloud.com</a></p>
+</div>
+</div>
+</div>
+
+<script>
+(function() {
+    const lightVideo = document.getElementById('video-light');
+    const darkVideo = document.getElementById('video-dark');
+    const overlay = document.getElementById('play-overlay');
+
+    function getActiveVideo() {
+        return document.documentElement.classList.contains('dark') ? darkVideo : lightVideo;
+    }
+
+    function getInactiveVideo() {
+        return document.documentElement.classList.contains('dark') ? lightVideo : darkVideo;
+    }
+
+    overlay.addEventListener('click', function() {
+        const video = getActiveVideo();
+        video.play();
+        overlay.classList.add('hidden');
+    });
+
+    lightVideo.addEventListener('click', function() {
+        lightVideo.pause();
+        overlay.classList.remove('hidden');
+    });
+
+    darkVideo.addEventListener('click', function() {
+        darkVideo.pause();
+        overlay.classList.remove('hidden');
+    });
+
+    lightVideo.addEventListener('ended', function() {
+        overlay.classList.remove('hidden');
+    });
+
+    darkVideo.addEventListener('ended', function() {
+        overlay.classList.remove('hidden');
+    });
+
+    window.toggleTheme = function() {
+        const outgoing = getActiveVideo();
+        const wasPlaying = !outgoing.paused;
+        const time = outgoing.currentTime;
+
+        outgoing.pause();
+
+        document.documentElement.classList.toggle('dark');
+
+        const incoming = getActiveVideo();
+        incoming.currentTime = time;
+
+        if (wasPlaying) {
+            incoming.play();
+        }
+    };
+})();
+
+window.openPrivacyModal = function() {
+    document.getElementById('privacy-modal').classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    window.location.hash = 'privacy-policy';
+};
+
+window.closePrivacyModal = function() {
+    document.getElementById('privacy-modal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+    history.replaceState(null, '', window.location.pathname);
+};
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePrivacyModal();
+});
+
+if (window.location.hash === '#privacy-policy') openPrivacyModal();
+
+window.addEventListener('hashchange', function() {
+    if (window.location.hash === '#privacy-policy') openPrivacyModal();
+});
+</script>
+</body></html>
